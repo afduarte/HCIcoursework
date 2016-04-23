@@ -1,5 +1,5 @@
 .title.center{
-    text-align: center;
+  text-align: center;
 }
 
 .main-frame>img{
@@ -34,4 +34,23 @@
   right: 0;
   background-color: rgba( 150, 150, 150, 0.478 );
   z-index: 999;
+}
+
+.modal-placeholder {
+  display: none;
+  padding: 5px;
+}
+.modal-backdrop {
+  display:none
+}
+.modal-backdrop.in {
+  opacity: 0;
+}
+.modal {
+  position: relative;
+}
+.thing .thing-thumb {
+  height: 100px;
+  margin: 0 auto;
+  max-width: 100%;
 }
