@@ -1,39 +1,66 @@
-.title.center{
+body{
+  font-family: 'Droid Sans', sans-serif;
+}
+
+.navigation .center{
+/*  margin: 0 auto;*/
+  display: inline-block;
+  float: none;
+  vertical-align: top;
   text-align: center;
 }
 
-.main-frame>img{
-  position: absolute;
+.mirror-frame{
+  margin-top: 20px;
+  border: 4px solid #ccc;
+  padding: 20px;
+  min-height: 500px;
+  display: flex;
+  flex-direction: column;
+  background-size: 100%;
+}
+
+.mirror-frame>img{
   margin:auto;
-  left: 0;
-  right: 0;
   display: block;
   max-width: 100%;
 }
 
-.main-frame img#model {
-  display: none;
+.mirror-frame img#model {
+  clear: both;
 }
 
 .tops, .bottoms, .accessories {
-  width: 100%;
-  height: 33.333333333333333%;
+  max-width: 100%;
+  display: none;
 }
 
-.tops>a>img, .bottoms>a>img, .accessories>a>img {
+.tops>a>img, .bottoms>a>img, .shoes>a>img {
   max-height: 100%;
   margin: 0 auto;
 }
 
-.clothes-picker {
-  float: right;
-  width: 25%;
-  position: absolute;
-  height: 100%;
-  top: 0;
-  right: 0;
+.sidebar {
+  width: 10.5%;
+  position: fixed;
+  height: 420px;
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: -15px;
+  margin-top: 60px;
+  float: left;
   background-color: rgba( 150, 150, 150, 0.478 );
-  z-index: 999;
+  z-index: 10;
+}
+
+.sidebar.clothes-picker{
+  float: right;
+  right: 0;
+}
+
+.sidebar.status{
+  float: left;
+  left: 0;
 }
 
 .modal-placeholder {
@@ -43,14 +70,216 @@
 .modal-backdrop {
   display:none
 }
+
 .modal-backdrop.in {
   opacity: 0;
 }
-.modal {
+
+#pickerModal.modal {
   position: relative;
 }
+
+#pickerModal .modal-content{
+  background-color: rgba(105, 105, 105, 0.85);
+}
+
+#pickerModal .modal-title{
+  color: #fff;
+}
+
+#pickerModal .modal-content p{
+  color: #fff;
+}
+
+.thing{
+  z-index: 50;
+}
+
+.thing img{
+  cursor: pointer;
+}
+
 .thing .thing-thumb {
   height: 100px;
   margin: 0 auto;
   max-width: 100%;
+}
+
+.thing-card span.badge{
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: rgba(0, 0, 0, 0.50);
+}
+
+.thing .colourBall{
+  z-index: 100;
+  position: absolute;
+  top: 0;
+  right: 5px;
+  width:25px;
+  height:25px;
+  border-radius:100%;
+}
+.controller-tablet {
+  overflow: hidden;
+  position:absolute;
+  top: 20px;
+  right: 15px;
+  border: 10px solid #000;
+  background-color: #dbdbdb;
+  height: 500px;
+  border-radius: 2rem;
+  overflow-y: scroll;
+}
+
+.controller-content {
+  padding-top: 70px;
+}
+
+/*
+ * Navbar
+*/
+
+.navigation {
+  margin-bottom: 0;
+  width: 100%;
+  position: fixed;
+  margin-top: 0;
+  margin-left: -15px;
+  height: 60px;
+  background-color: #fff;
+  z-index: 100;
+  border-radius: 0;
+}
+
+.navbar-default {
+    border-color: #DBDBDB;
+}
+
+.navigation .navbar-nav>li>a{
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.navigation .navbar-nav>li.active>a{
+  padding-top: 20px;
+  padding-bottom: 18px;
+  border-bottom: none;
+  background-color: #DBDBDB;
+}
+
+.navigation .navbar-brand {
+  height: 60px;
+  padding: 0 15px;
+  text-align: center;
+}
+*/
+
+h2.navbar-brand {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0;
+  margin-top: 0;
+  text-align: center;
+}
+
+.underslide{
+  position: relative;
+  color: #000;
+  text-decoration: none;
+}
+
+.underslide:hover{
+  color: #000;
+}
+
+.underslide:before{
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #000;
+  visibility: hidden;
+  -webkit-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transition: all 0.2s ease-in-out 0s;
+/*  -webkit-transition: 0.2s ease;*/
+  transition: all 0.2s ease-in-out 0s;
+/*  transition: 0.2s ease;*/
+}
+
+.underslide:hover:before{
+  visibility: visible;
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
+}
+/*
+ * Stuff Cards
+*/
+
+.controller-tablet .thing-card{
+  margin-top: 70px;
+  margin-left: 18px;
+}
+
+.thing-card {
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12) !important;
+  max-width: 300px;
+  margin: 10px auto;
+  background-color: #fff;
+}
+
+h4.thing-card-title {
+    vertical-align: middle;
+    text-align: center;
+    padding: 5px;
+    margin-top: 0;
+    margin-bottom: 0;
+    min-height: 5.3em;
+}
+
+.thing-card-img {
+    height: 300px;
+    display: flex;
+    align-items: center;
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+.thing-card img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
+    height: auto;
+}
+
+.sidebar-item {
+  padding: 20px 10px;
+  transition:background .5s ease;
+}
+
+.sidebar-item.active {
+  background-color: #666;
+  color: #fff;
+}
+
+.sidebar-item:hover {
+  background-color: #dbdbdb;
+  color:#333;
+}
+
+.sidebar-list {
+  transition:.5s;
+}
+
+ul.nav li.active {
+  transition:background 0.7s ease;
+}
+
+#thingCardTemplate {
+  display:none;
 }

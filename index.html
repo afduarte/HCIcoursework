@@ -2,42 +2,51 @@
 <html lang="en">
   <head>
     <link rel="stylesheet" href="assets/css/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/font-awesome/css/font-awesome.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="assets/css/style.css">
     <script src="assets/js/jquery/jquery.min.js"></script>
     <script src="assets/js/bootstrap/bootstrap.min.js"></script>
   </head>
   <body>
     <div class="container">
-      <div class="row">
-        <div class="col-md-4 col-md-push-4">
-          <h1 class="title center">Virtual Mirror</h1>
-        </div>
-        <div class="row">
-          <div class="main-frame col-md-8 col-md-push-2">
-            <div class="clothes-picker">
-              <div class="tops">
-                <a type="button" data-toggle="modal" data-target="#pickerModal" data-id="tops" title="Pick a top" class="open-pickerModal">
-                  <img src="assets/img/viselements/tops.png" class="img-responsive">
-                </a>
-              </div>
-              <div class="bottoms">
-                <a type="button" data-toggle="modal" data-target="#pickerModal" data-id="bottoms" title="Pick a bottom" class="open-pickerModal">
-                  <img src="assets/img/viselements/tops.png" class="img-responsive">
-                </a>
-              </div>
-              <div class="accessories">
-                <a type="button" data-toggle="modal" data-target="#pickerModal" data-id="accessories" title="Pick accessories" class="open-pickerModal">
-                  <img src="assets/img/viselements/tops.png" class="img-responsive">
-                </a>
-              </div>
-            </div>
-            <div class="modal-placeholder"></div>
-            <img id="bg"/>
+      <div class="row mirror">
+        <div class="col-md-3">
+          <div class="mirror-frame">
             <img id="model"/>
           </div>
         </div>
-      </div>      
-    </div>
+      </div>
+      <div class="controller-tablet col-md-8">
+        <div class="navigation navbar navbar-default">
+          <div class="row">
+            <div class="col-md-3">
+              <h2 class="navbar-left navbar-brand">LOGO</h2>
+            </div>
+            <div class="col-md-6">
+              <ul class="center nav navbar-nav">
+                <li class="active"><a href="#">All</a></li>
+                <li class="underslide"><a href="#">Men</a></li>
+                <li class="underslide"><a href="#">Women</a></li>
+                <li class="underslide"><a href="#">Kids</a></li>
+                <li class="underslide"><a href="#">Sale</a></li>
+                <li class="underslide"><a href="#">Latest</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="modal-placeholder"></div>
+        <div class="col-md-2 sidebar">
+          <ul class="sidebar-list nav nav-stacked">
+            <li class="sidebar-item active" data-id="tops">TOPS</li>
+            <li class="sidebar-item" data-id="bottoms">BOTTOMS</li>
+            <li class="sidebar-item" data-id="shoes">SHOES</li>
+            <li class="sidebar-item" data-id="accessories">ACCESSORIES</li>
+          </ul>
+        </div>
+      </div>
+    </div>      
+
     <!--MODALS-->
     <div class="modal fade" id="pickerModal" tabindex="-1" role="dialog" aria-labelledby="clothesPickerLabel">
       <div class="modal-dialog" role="document">
@@ -47,17 +56,35 @@
             <h4 class="modal-title" id="clothesPickerLabel">Modal title</h4>
           </div>
           <div class="modal-body">
-          <div class="row"></div>
+            <div class="row"></div>
           </div>
         </div>
       </div>
     </div>
-    
+
     <!--Thing template-->
-    <div id="thingTemplate" class="thing col-md-3">
+    <div id="thingTemplate" class="thing col-sm-3">
       <img class="thing-thumb"/>
-      <p class="thingName"></p>
-      <p class="thingDescription"></p>
+      <span class="badge"></span>
+      <div class="caption">
+        <p class="thingName"></p>
+        <div class="thingColours">
+        </div>
+      </div>
+    </div>
+
+    <!--Thing Card template-->
+    <div id="thingCardTemplate" class="thing-card col-md-3">
+      <div class="thing-card-img">
+        <img>
+        <span class="badge"></span>
+      </div>
+      <h5 class="thing-card-title"></h5>
+    </div>
+
+    <!--Status Item template-->
+    <div class="status-item">
+      <img class="status-item-thumb"/>
     </div>
     <script src="assets/js/script.js"></script>
   </body>
