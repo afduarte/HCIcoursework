@@ -130,42 +130,43 @@ $(function() {
     $(this).remove();
     $('.mirror-frame').css('background-image','url('+imgBasePath+state.bg.img+')');
     init();
+    loadMainStuff();
   });
+//
+//  $('#pickerModal').on('show.bs.modal', function (event) {
+//    var thisModal = $(this);
+//    var clicked = $(event.relatedTarget);
+//    var modelThings =  state.model[clicked.data('id')];
+//    thisModal.find('.modal-title').text('Now Choosing: '+clicked.data('id'));
+//
+//    for(var i=0;i<modelThings.length;i++){
+//      var thingToAdd = $('#thingTemplate').clone();
+//      thingToAdd.attr('id',clicked.data('id')+i);
+//      thingToAdd.find('img').attr('src',imgBasePath+modelThings[i].object.colours[0].path);
+//      thingToAdd.find('img').addClass('img-responsive');
+//      thingToAdd.find('p.thingName').text(modelThings[i].object.name);
+//      thingToAdd.find('p.thingDescription').text(modelThings[i].object.desc);
+//      thingToAdd.find('span.badge').text(modelThings[i].object.price+' £');
+//      thingToAdd.find('p.thingAvail').text(modelThings[i].object.availability);
+//
+//      thingToAdd.find('div.thingColours').append('<div style="background-color:'+modelThings[i].object.colours[0].hex+';" class="active colourBall"></div>');
+//      var topPadding = 25;
+//      for(var j=1;j<modelThings[i].object.colours.length;j++){
+//        topPadding+=2;
+//        console.log(top+':'+j)
+//        thingToAdd.find('div.thingColours').append('<div style="background-color:'+modelThings[i].object.colours[j].hex+'; top: '+topPadding+'px;" class="colourBall hidden"></div>');
+//        topPadding+=25;
+//      }
+//
+//      thisModal.find('.modal-body .row').append(thingToAdd);
+//    }
+//
+//  });
 
-  $('#pickerModal').on('show.bs.modal', function (event) {
-    var thisModal = $(this);
-    var clicked = $(event.relatedTarget);
-    var modelThings =  state.model[clicked.data('id')];
-    thisModal.find('.modal-title').text('Now Choosing: '+clicked.data('id'));
-
-    for(var i=0;i<modelThings.length;i++){
-      var thingToAdd = $('#thingTemplate').clone();
-      thingToAdd.attr('id',clicked.data('id')+i);
-      thingToAdd.find('img').attr('src',imgBasePath+modelThings[i].object.colours[0].path);
-      thingToAdd.find('img').addClass('img-responsive');
-      thingToAdd.find('p.thingName').text(modelThings[i].object.name);
-      thingToAdd.find('p.thingDescription').text(modelThings[i].object.desc);
-      thingToAdd.find('span.badge').text(modelThings[i].object.price+'£');
-      thingToAdd.find('p.thingAvail').text(modelThings[i].object.availability);
-
-      thingToAdd.find('div.thingColours').append('<div style="background-color:'+modelThings[i].object.colours[0].hex+';" class="active colourBall"></div>');
-      var topPadding = 25;
-      for(var j=1;j<modelThings[i].object.colours.length;j++){
-        topPadding+=2;
-        console.log(top+':'+j)
-        thingToAdd.find('div.thingColours').append('<div style="background-color:'+modelThings[i].object.colours[j].hex+'; top: '+topPadding+'px;" class="colourBall hidden"></div>');
-        topPadding+=25;
-      }
-
-      thisModal.find('.modal-body .row').append(thingToAdd);
-    }
-
-  });
-
-  // Cleanup on modal close to prevent items appearing multiple times.
-  $('#pickerModal').on('hidden.bs.modal', function () {
-    $('.modal-body .row .thing').remove();
-  });
+// Cleanup on modal close to prevent items appearing multiple times.
+//  $('#pickerModal').on('hidden.bs.modal', function () {
+//    $('.modal-body .row .thing').remove();
+//  });
 
 
   $(window).on('resize',function(){
@@ -181,7 +182,6 @@ $(function() {
     state.controller.width = parseFloat($('.controller-tablet').css('width'));
     state.controller.width-=36;
     $('.navigation').css('width',state.controller.width);
-    loadMainStuff();
 
   }
 
@@ -191,10 +191,10 @@ $(function() {
     var modelThings =  state.model[state.active];
     for(var i=0;i<modelThings.length;i++){
       var thingToAdd = $('#thingCardTemplate').clone();
-      thingToAdd.attr('id',state.active+i);
+      thingToAdd.attr('id',state.active+'-'+i);
       thingToAdd.find('.thing-card-img img').attr('src',imgBasePath+modelThings[i].object.colours[0].path);
       thingToAdd.find('h5.thing-card-title').text(modelThings[i].object.name);
-      thingToAdd.find('.badge').text(modelThings[i].object.price+'£');
+      thingToAdd.find('.badge').text(modelThings[i].object.price+' £');
 
       for(var j=0;j<modelThings[i].object.colours.length;j++){
         thingToAdd.find('div.thing-card-colours').append('<div style="background-color:'+modelThings[i].object.colours[j].hex+';" class="colour"></div>');
@@ -217,9 +217,13 @@ $(function() {
 
 
   // Handle item clicks
-  $(document).on('click','.thing img', function(){
-    console.log($(this));
-
+  $(document).on('click','.thing-card', function(){
+    var modal = $('#itemModal.modal');
+    var type = $(this).attr('id').split('-')[0];
+    var number = $(this).attr('id').split('-')[1];
+    var clicked = state.model[type][number].object;
+    console.log(clicked.name);
+    modal.show();
   });
 
   $(document).on('click','.sidebar-item', function(){
@@ -234,10 +238,10 @@ $(function() {
     }
   });
 
-  $(document).on('mouseover','.thingColours div.colourBall:not(.hidden)',function(){
-    $(this).siblings('div.colourBall').slideDown('fast').removeClass('hidden');
-    $(this).siblings('div.colourBall').on('mouseout',function(){
-      $(this).siblings('div.colourBall:not(.active)').addClass('hidden');
-    });
-  });
+//  $(document).on('mouseover','.thingColours div.colourBall:not(.hidden)',function(){
+//    $(this).siblings('div.colourBall').slideDown('fast').removeClass('hidden');
+//    $(this).siblings('div.colourBall').on('mouseout',function(){
+//      $(this).siblings('div.colourBall:not(.active)').addClass('hidden');
+//    });
+//  });
 });
