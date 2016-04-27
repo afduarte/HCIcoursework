@@ -51,6 +51,7 @@ body{
   float: left;
   background-color: rgba( 150, 150, 150, 0.478 );
   z-index: 10;
+  box-shadow: none,none,0 2px 10px 0 rgba(0,0,0,0.12),none;
 }
 
 .sidebar.clothes-picker{
@@ -105,7 +106,7 @@ body{
   max-width: 100%;
 }
 
-.thing-card span.badge{
+.thing-card p.badge{
   position: absolute;
   top: 10px;
   left: 10px;
@@ -125,7 +126,7 @@ body{
   overflow: hidden;
   position:absolute;
   top: 20px;
-  right: 15px;
+  right: 5%;
   border: 10px solid #000;
   background-color: #dbdbdb;
   height: 500px;
@@ -232,13 +233,14 @@ h2.navbar-brand {
   background-color: #fff;
 }
 
-h4.thing-card-title {
-    vertical-align: middle;
-    text-align: center;
-    padding: 5px;
-    margin-top: 0;
-    margin-bottom: 0;
-    min-height: 5.3em;
+h5.thing-card-title {
+  clear: both;  
+  vertical-align: middle;
+/*  text-align: center;*/
+  padding: 5px;
+  margin-top: 0;
+  margin-bottom: 0;
+  min-height: 1em;
 }
 
 .thing-card-img {
@@ -282,4 +284,20 @@ ul.nav li.active {
 
 #thingCardTemplate {
   display:none;
+}
+
+.main-container {
+  width: 1500px;
+}
+
+.colour {
+  margin: 3px;
+  float: left;
+  width: 20px;
+  height: 20px;
+}
+
+.thing-card-colours .colour {
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.25),0 2px 4px 0 rgba(0,0,0,0.25) !important;
+/*    box-shadow: 0 2px 3px 0 rgba(0,0,0,0.30),0 2px 10px 0 rgba(0,0,0,0.26) !important;*/
 }

@@ -194,7 +194,7 @@ $(function() {
       thingToAdd.attr('id',state.active+i);
       thingToAdd.find('.thing-card-img img').attr('src',imgBasePath+modelThings[i].object.colours[0].path);
       thingToAdd.find('h5.thing-card-title').text(modelThings[i].object.name);
-      thingToAdd.find('span.badge').text(modelThings[i].object.price+'£');
+      thingToAdd.find('.badge').text(modelThings[i].object.price+'£');
 
       for(var j=0;j<modelThings[i].object.colours.length;j++){
         thingToAdd.find('div.thing-card-colours').append('<div style="background-color:'+modelThings[i].object.colours[j].hex+';" class="colour"></div>');
