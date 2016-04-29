@@ -3,10 +3,10 @@ $(function() {
 
   // Object holding the available stuff
   stuffAvailable = {
-    bg: ["bg/1.jpg","bg/2.jpg"],
+    bg: ["bg/1.jpg","bg/2.jpg","bg/3.jpg","bg/4.jpg"],
     models: [
       {
-        img: 'models/girl3.png',
+        id: 'antonella',
         size: {
           tops: 'M',
           bottoms: 'W32 L30'
@@ -14,55 +14,55 @@ $(function() {
         tops: [
           {
             object:{
-              name: 'hipShirt',
-              desc: 'super-hip shirt',
+              name: 'Lemoncello Neck Top',
+              desc: 'Super-hip shirt',
               price: 20,
               availability: '3 in store, 5 for order',
               colours: [
                 {
                   name: 'grey',
-                  hex: '#888',
-                  path: 'models/guy/tops/shirt1.png',
+                  hex: '#FCC943',
+                  path: 'models/stuff/tops/shirt1.png',
                 }
               ]
             }
           },
           {
             object:{
-              name: 'hipperShirt',
-              desc: 'even-hipper shirt',
+              name: 'Slim Fit V Neck',
+              desc: 'Even-hipper Shirt',
               price: 25,
               availability: '5 in store, 3 for order',
               colours: [
                 {
                   name: 'navy-blue',
-                  hex: '#2157b4',
-                  path: 'models/guy/tops/shirt2.png',
+                  hex: '#003656',
+                  path: 'models/stuff/tops/shirt2.png',
                 },
                 {
                   name: 'black',
                   hex: '#000',
-                  path: 'models/guy/tops/shirt2.png',
+                  path: 'models/stuff/tops/shirt2.png',
                 },
                 {
                   name: 'white',
                   hex: '#fff',
-                  path: 'models/guy/tops/shirt2.png',
+                  path: 'models/stuff/tops/shirt2.png',
                 }
               ]
             }
           },
           {
             object:{
-              name: 'mehShirt',
-              desc: 'yeah, just another shirt',
+              name: 'meh Shirt',
+              desc: 'Yeah, just another shirt',
               price: 10,
               availability: 'not in store, 3 for order',
               colours: [
                 {
                   name: 'blue',
                   hex: '#0f67ff',
-                  path: 'models/guy/tops/shirt3.png',
+                  path: 'models/stuff/tops/shirt3.png',
                 }
               ]
             }
@@ -77,7 +77,7 @@ $(function() {
                 {
                   name: 'white',
                   hex: '#fff',
-                  path: 'models/guy/tops/shirt4.png',
+                  path: 'models/stuff/tops/shirt4.png',
                 }
               ]
             }
@@ -86,14 +86,28 @@ $(function() {
         bottoms: [
           {
             object:{
-              name: 'shirtrousers',
-              desc: 'trousers that look like a shirt',
+              name: 'Plain Trousers',
+              desc: 'Just your regular trousers',
               price: 50,
               colours: [
                 {
                   name: 'grey',
                   hex: '#888',
-                  path: 'models/guy/bottoms/trousers1.png',
+                  path: 'models/stuff/bottoms/trousers1.png',
+                }
+              ]
+            }
+          },
+          {
+            object:{
+              name: 'Plain Trousers 2',
+              desc: 'Just your regular trousers but cheaper',
+              price: 35,
+              colours: [
+                {
+                  name: 'grey',
+                  hex: '#888',
+                  path: 'models/stuff/bottoms/trousers2.png',
                 }
               ]
             }
@@ -119,11 +133,18 @@ $(function() {
   // var to hold the initial state and keep track of the changes
   state = {
     bg: {
-      img:stuffAvailable.bg[1]
+      img:stuffAvailable.bg[3]
     },
+    tops: 0,
+    bottoms: 0,
+    bag: false,
+    jacket: false,
     model: stuffAvailable.models[0],
     active: 'tops',
-    controller: {}
+    controller: {},
+    popup: false,
+    previous: '',
+    current: ''
   };
 
   $('<img/>').attr('src', imgBasePath+state.bg.img).load(function() {
@@ -132,55 +153,33 @@ $(function() {
     init();
     loadMainStuff();
   });
-  //
-  //  $('#pickerModal').on('show.bs.modal', function (event) {
-  //    var thisModal = $(this);
-  //    var clicked = $(event.relatedTarget);
-  //    var modelThings =  state.model[clicked.data('id')];
-  //    thisModal.find('.modal-title').text('Now Choosing: '+clicked.data('id'));
-  //
-  //    for(var i=0;i<modelThings.length;i++){
-  //      var thingToAdd = $('#thingTemplate').clone();
-  //      thingToAdd.attr('id',clicked.data('id')+i);
-  //      thingToAdd.find('img').attr('src',imgBasePath+modelThings[i].object.colours[0].path);
-  //      thingToAdd.find('img').addClass('img-responsive');
-  //      thingToAdd.find('p.thingName').text(modelThings[i].object.name);
-  //      thingToAdd.find('p.thingDescription').text(modelThings[i].object.desc);
-  //      thingToAdd.find('span.badge').text(modelThings[i].object.price+' £');
-  //      thingToAdd.find('p.thingAvail').text(modelThings[i].object.availability);
-  //
-  //      thingToAdd.find('div.thingColours').append('<div style="background-color:'+modelThings[i].object.colours[0].hex+';" class="active colourBall"></div>');
-  //      var topPadding = 25;
-  //      for(var j=1;j<modelThings[i].object.colours.length;j++){
-  //        topPadding+=2;
-  //        console.log(top+':'+j)
-  //        thingToAdd.find('div.thingColours').append('<div style="background-color:'+modelThings[i].object.colours[j].hex+'; top: '+topPadding+'px;" class="colourBall hidden"></div>');
-  //        topPadding+=25;
-  //      }
-  //
-  //      thisModal.find('.modal-body .row').append(thingToAdd);
-  //    }
-  //
-  //  });
 
   // Cleanup on modal close to prevent items appearing multiple times.
-    $('#itemModal').on('hidden.bs.modal', function () {
-      $('.modal-placeholder').html(' ');
-    });
+  $('#itemModal').on('hidden.bs.modal', function () {
+    $('.modal-placeholder').html(' ');
+  });
 
 
   $(window).on('resize',function(){
     init();
   });
 
+  function resetMirror(){
+    $('.mirror-frame img#model').attr('src',state.previous);
+  }
+
+  function getImgString(){
+    return imgBasePath+'models/'+state.model.id+'/tops'+state.tops+'/bottoms'+state.bottoms+'/'+(state.jacket?'jacket':'')+(state.bag?'bag':'no-bag')+'.png';
+  }
+
   function init(){
     console.log('Running init');
     // Store the height of the bg img, cause we'll use it later
     state.bg.height = parseFloat($('.mirror-frame').css('height'));
-    $('.mirror-frame img#model').attr('src',imgBasePath+state.model.img);
+    $('.mirror-frame img#model').attr('src',getImgString());
     state.model.height = parseFloat($('.mirror-frame img#model').css('height'));
     state.controller.width = parseFloat($('.controller-tablet').css('width'));
-    state.controller.width-=36;
+    state.controller.width-=20;
     $('.navigation').css('width',state.controller.width);
 
   }
@@ -194,7 +193,7 @@ $(function() {
       thingToAdd.attr('id',state.active+'-'+i);
       thingToAdd.find('.thing-card-img img').attr('src',imgBasePath+modelThings[i].object.colours[0].path);
       thingToAdd.find('h5.thing-card-title').text(modelThings[i].object.name);
-      thingToAdd.find('.badge').text(modelThings[i].object.price+' £');
+      thingToAdd.find('.badge').text('£'+modelThings[i].object.price);
 
       for(var j=0;j<modelThings[i].object.colours.length;j++){
         thingToAdd.find('div.thing-card-colours').append('<div style="background-color:'+modelThings[i].object.colours[j].hex+';" class="colour"></div>');
@@ -215,22 +214,68 @@ $(function() {
 
   }
 
-  $('#itemModal').on('show.bs.modal', function () {
-    console.log('show.bs.modal event')
-    var mod = $('#itemModal.modal'); //Create variable and load modal in it
-    $('div.modal-placeholder').html(mod);//Load modal to `insidemodal` Selector
-    mod.remove();
-  });
-
-
   // Handle item clicks
   $(document).on('click','.thing-card', function(){
-    var modal = $('#itemModalTemplate.modal').clone();
-    modal.attr('id','#itemModal');
-    var type = $(this).attr('id').split('-')[0];
-    var number = $(this).attr('id').split('-')[1];
-    var clicked = state.model[type][number].object;
-    console.log(clicked.name);
+    // If the popup is not showing
+    if(!state.popup){
+      state.previous = $('.mirror-frame img#model').attr('src');
+      // Clone the template
+      var modal = $('#itemModalTemplate.popupTemplate').clone();
+      // Change the id
+      modal.attr('id','#itemModal');
+      // Get info from the clicked element
+      var type = $(this).attr('id').split('-')[0];
+      var number = $(this).attr('id').split('-')[1];
+      var clicked = state.model[type][number].object;
+      // Change the text in the template copy
+      modal.find('p#thingName').text(clicked.name);
+      modal.find('p#thingDescription').text(clicked.desc);
+      // Change the state
+      state[type] = number;
+      // Change the image in the mirror
+      $('.mirror-frame img#model').attr('src',getImgString());
+      // Get the image of the thing clicked
+      modal.find('#thingImg').attr('src',$(this).find('.thing-card-img img').attr('src'));
+      // Switch the template class
+      modal.removeClass('popupTemplate');
+      modal.addClass('popup');
+      // Place the modal in the placeholder
+      $('div.modal-placeholder').append(modal);
+      // Show it
+      modal.css('display','block');
+      // Record that the popup is showing
+      state.popup = true;
+      // Else if the popup is showing, remove it
+    }else{
+      removePopup(false);
+    }
+  });
+
+  $(document).mouseup(function (e){
+    if(state.popup){
+      var container = $('.popup');
+      if (!container.is(e.target) && container.has(e.target).length === 0){
+        removePopup(false);
+      }
+    }
+  });
+
+  function removePopup(reset){
+    $('.popup').remove();
+    state.popup = false;
+    if(reset){
+      resetMirror();
+    }else{
+      $('.mirror-frame img#model').attr('src',getImgString());
+    }
+  }
+
+  $(document).on('click','.closeButton', function(){
+    removePopup(true);
+  });
+
+  $(document).on('click','.saveButton', function(){
+    removePopup(false);
   });
 
   $(document).on('click','.sidebar-item', function(){

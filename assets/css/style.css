@@ -2,8 +2,11 @@ body{
   font-family: 'Droid Sans', sans-serif;
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 .navigation .center{
-/*  margin: 0 auto;*/
   display: inline-block;
   float: none;
   vertical-align: top;
@@ -17,7 +20,7 @@ body{
   min-height: 500px;
   display: flex;
   flex-direction: column;
-  background-size: 100%;
+  background-size: auto 100%;
 }
 
 .mirror-frame>img{
@@ -41,7 +44,8 @@ body{
 }
 
 .sidebar {
-  width: 10.5%;
+  border-bottom-left-radius: 2rem;
+  width: 7.5%;
   position: fixed;
   height: 420px;
   padding-left: 0;
@@ -49,9 +53,9 @@ body{
   margin-left: -15px;
   margin-top: 60px;
   float: left;
-  background-color: rgba( 150, 150, 150, 0.478 );
+  background-color: #fff;
   z-index: 10;
-  box-shadow: none,none,0 2px 10px 0 rgba(0,0,0,0.12),none;
+  box-shadow: 0 2px 10px 0 rgba(0,0,0,0.12);
 }
 
 .sidebar.clothes-picker{
@@ -65,9 +69,10 @@ body{
 }
 
 .modal-placeholder {
+  z-index: 150;
   position: fixed;
-  top: 70px;
-  left: 10.5%;
+  margin-left: auto;
+  margin-right: auto;
   padding: 5px;
 }
 .modal-backdrop {
@@ -79,7 +84,7 @@ body{
 }
 
 #pickerModal.modal, #itemModal.modal {
-    position: relative;
+  position: relative;
 }
 
 #pickerModal .modal-content{
@@ -109,6 +114,7 @@ body{
 }
 
 .thing-card p.badge{
+  font-size: 1.2em;
   position: absolute;
   top: 10px;
   left: 10px;
@@ -130,7 +136,7 @@ body{
   top: 20px;
   right: 5%;
   border: 10px solid #000;
-  background-color: #dbdbdb;
+  background-color: #fff;
   height: 500px;
   border-radius: 2rem;
   overflow-y: scroll;
@@ -141,7 +147,7 @@ body{
 }
 
 /*
- * Navbar
+* Navbar
 */
 
 .navigation {
@@ -154,10 +160,12 @@ body{
   background-color: #fff;
   z-index: 100;
   border-radius: 0;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
 }
 
 .navbar-default {
-    border-color: #DBDBDB;
+  border-color: #DBDBDB;
 }
 
 .navigation .navbar-nav>li>a{
@@ -173,7 +181,7 @@ body{
 }
 
 .navigation .navbar-brand {
-  height: 60px;
+  height: auto;
   padding: 0 15px;
   text-align: center;
 }
@@ -209,9 +217,9 @@ h2.navbar-brand {
   -webkit-transform: scaleX(0);
   transform: scaleX(0);
   -webkit-transition: all 0.2s ease-in-out 0s;
-/*  -webkit-transition: 0.2s ease;*/
+  /*  -webkit-transition: 0.2s ease;*/
   transition: all 0.2s ease-in-out 0s;
-/*  transition: 0.2s ease;*/
+  /*  transition: 0.2s ease;*/
 }
 
 .underslide:hover:before{
@@ -220,7 +228,7 @@ h2.navbar-brand {
   transform: scaleX(1);
 }
 /*
- * Stuff Cards
+* Stuff Cards
 */
 
 .controller-tablet .thing-card{
@@ -238,7 +246,6 @@ h2.navbar-brand {
 h5.thing-card-title {
   clear: both;  
   vertical-align: middle;
-/*  text-align: center;*/
   padding: 5px;
   margin-top: 0;
   margin-bottom: 0;
@@ -246,23 +253,24 @@ h5.thing-card-title {
 }
 
 .thing-card-img {
-    height: 250px;
-    display: flex;
-    align-items: center;
-    overflow-y: hidden;
-    overflow-x: hidden;
+  height: 250px;
+  display: flex;
+  align-items: center;
+  overflow-y: hidden;
+  overflow-x: hidden;
 }
 
 .thing-card img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 100%;
-    height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100%;
+  max-height: 80%;
+  height: auto;
 }
 
 .sidebar-item {
-  padding: 20px 10px;
+  padding: 13px 10px;
   transition:background .5s ease;
 }
 
@@ -289,7 +297,7 @@ ul.nav li.active {
 }
 
 .main-container {
-  width: 1500px;
+  width: 1080px;
 }
 
 .colour {
@@ -301,9 +309,35 @@ ul.nav li.active {
 
 .thing-card-colours .colour {
   box-shadow: 0 2px 4px 0 rgba(0,0,0,0.25),0 2px 4px 0 rgba(0,0,0,0.25) !important;
-/*    box-shadow: 0 2px 3px 0 rgba(0,0,0,0.30),0 2px 10px 0 rgba(0,0,0,0.26) !important;*/
 }
 
 #thingTemplate {
   display: none;
+}
+
+#itemModalTemplate {
+  display: none;
+}
+
+.popup{
+  position: relative;
+  z-index: 50;
+  left: 15%;
+}
+
+#thingImg {
+  margin: 0 auto;
+  max-width: 70%; 
+}
+
+.popup .row {
+  padding: 20px;
+}
+
+.popup .modal-header i.fa {
+  margin: 0 5px;
+}
+
+img {
+  transition: all 0.3;
 }
