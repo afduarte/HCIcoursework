@@ -1,83 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
+    <title>IM</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="assets/css/intro.css">
+    <!--    <link rel="stylesheet" type="text/css" href="assets/css/outro.css">-->
     <link rel="stylesheet" href="assets/css/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/font-awesome/css/font-awesome.min.css">
-    <link href='https://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="assets/css/style.css">
     <script src="assets/js/jquery/jquery.min.js"></script>
     <script src="assets/js/bootstrap/bootstrap.min.js"></script>
   </head>
   <body>
-    <div class="container main-container">
-      <div class="row mirror">
-        <div class="col-md-3">
-          <div class="mirror-frame">
-            <img id="model"/>
+    <div class="container">
+      <div class="row">
+        <div class="controller-tablet col-md-10 col-md-push-1">
+          <div class="row logo-row">
+            <div class="col-md-6 col-md-push-3">
+              <img class=" img-responsive logo" src="assets/img/viselements/elements/logoDemo.png" alt="logo">
+            </div>
           </div>
-        </div>
-      </div>
-      <div class="controller-tablet col-md-7">
-        <div class="navigation navbar navbar-default">
           <div class="row">
-            <div class="col-md-2">
-              <h2 class="navbar-left navbar-brand">LOGO</h2>
+            <div class="container">
+              <div class="buttons col-md-10 col-md-push-1">
+                <a href="#" class="action-button shadow animate white">
+                  <div class="help">
+                    <i class="fa fa-question-circle" aria-hidden="true"></i>
+                    <br>
+                    Help
+                  </div>
+                </a>
+                <a href="main.html" class="action-button shadow animate white shine">
+                  <div class="start">
+                    <i class="fa fa-play-circle" aria-hidden="true"></i>
+                    <br>
+                    Start
+                  </div>
+                </a>
+                <a href="#" class="action-button shadow animate white" data-toggle="modal" data-target="#myModal">
+                  <div class="language">
+                    <i class="fa fa-flag" aria-hidden="true"></i>
+                    <!-- <img src="assets/img/viselements/elements/squk.png" width="75" height="50"> couldn't find a font awesome flag -->
+                    <br>
+                    Language
+                  </div>
+                </a>
+              </div>
             </div>
-            <div class="col-md-7">
-              <ul class="center nav navbar-nav">
-                <li class="active"><a href="#">All</a></li>
-                <li class="underslide"><a href="#">Men</a></li>
-                <li class="underslide"><a href="#">Women</a></li>
-                <li class="underslide"><a href="#">Kids</a></li>
-                <li class="underslide"><a href="#">Sale</a></li>
-                <li class="underslide"><a href="#">Latest</a></li>
-              </ul>
-            </div>
           </div>
-        </div>
-        <div class="modal-placeholder"></div>
-        <div class="col-md-2 sidebar">
-          <ul class="sidebar-list nav nav-stacked">
-            <li class="sidebar-item active" data-id="tops">TOPS</li>
-            <li class="sidebar-item" data-id="bottoms">BOTTOMS</li>
-            <li class="sidebar-item" data-id="shoes">SHOES</li>
-            <li class="sidebar-item" data-id="accessories">ACCESSORIES</li>
-          </ul>
-        </div>
-      </div>
-    </div>      
-
-    <!--MODALS-->
-    <div class="modal fade" id="pickerModal" tabindex="-1" role="dialog" aria-labelledby="clothesPickerLabel">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="clothesPickerLabel">Modal title</h4>
-          </div>
-          <div class="modal-body">
-            <div class="row"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="popupTemplate" id="itemModalTemplate">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <i class="closeButton fa fa-times fa-2x"></i><i class="saveButton fa fa-floppy-o fa-2x"></i><i class="fa fa-question fa-2x"></i>
-          </div>
-          <div class="modal-body">
-            <div class="row">
-              <div class="row">
-                <div class="col-md-6">
-                  <img class="img-responsive" id="thingImg">
-                </div>
-                <div class="col-md-6">
-                  <p id="thingName"></p>
-                  <p id="thingDescription"></p>
+          <div class="container">
+            <div class="modal fade" id="myModal" role="dialog">
+              <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Select Language</h4>
+                  </div>
+                  <div class="modal-body">
+                    <button type="button" class="action-button animate mini dark"><img src="assets/img/viselements/elements/it.png" width="90" height="70" data-dismiss="modal"></button>
+                    <button type="button" class="action-button animate mini dark"><img src="assets/img/viselements/elements/uk.png" width="90" height="70" data-dismiss="modal"></button>
+                    <button type="button" class="action-button animate mini dark"><img src="assets/img/viselements/elements/pt.png" width="90" height="70" data-dismiss="modal"></button>
+                    <button type="button" class="action-button animate mini dark"><img src="assets/img/viselements/elements/fr.png" width="90" height="70" data-dismiss="modal"></button>
+                    <button type="button" class="action-button animate mini dark"><img src="assets/img/viselements/elements/ge.png" width="90" height="70" data-dismiss="modal"></button>
+                    <button type="button" class="action-button animate mini dark"><img src="assets/img/viselements/elements/pl.png" width="90" height="70" data-dismiss="modal"></button>
+                    <button type="button" class="action-button animate mini dark"><img src="assets/img/viselements/elements/gr.png" width="90" height="70" data-dismiss="modal"></button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -85,32 +71,5 @@
         </div>
       </div>
     </div>
-
-    <!--Thing template-->
-    <div id="thingTemplate" class="thing col-sm-3">
-      <img class="thing-thumb"/>
-      <span class="badge"></span>
-      <div class="caption">
-        <p class="thingName"></p>
-        <div class="thingColours">
-        </div>
-      </div>
-    </div>
-
-    <!--Thing Card template-->
-    <div id="thingCardTemplate" class="thing-card col-md-3">
-      <div class="thing-card-img">
-        <img>
-        <p class="badge"></p>
-      </div>
-      <div class="thing-card-colours"></div>
-      <h5 class="thing-card-title"></h5>
-    </div>
-
-    <!--Status Item template-->
-    <div class="status-item">
-      <img class="status-item-thumb"/>
-    </div>
-    <script src="assets/js/script.js"></script>
   </body>
 </html>
