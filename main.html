@@ -37,6 +37,12 @@
           </div>
         </div>
         <div class="modal-placeholder"></div>
+        <div id="pickerList" class="sidebar-right">
+          <div class="sidebar-right-button">
+            <i id="pickerListButton" class="fa fa-chevron-left"></i>
+          </div>
+          <div class="items-list"></div>
+        </div>
         <div class="col-md-2 sidebar">
           <ul class="sidebar-list nav nav-stacked">
             <li class="sidebar-item active" data-id="tops">TOPS</li>
@@ -108,8 +114,13 @@
     </div>
 
     <!--Status Item template-->
-    <div class="status-item">
-      <img class="status-item-thumb"/>
+    <div id ="pickedItemTemplate" class="picked-item">
+      <div class="thumb-container">
+        <img class="img-responsive picked-item-thumb"/>
+        <i class="fa fa-times removeButton"></i>
+        <p class="item-badge badge"></p>
+      </div>
+      <p class="item-name"></p>
     </div>
     <script src="assets/js/script.js"></script>
   </body>

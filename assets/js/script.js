@@ -20,7 +20,7 @@ $(function() {
               availability: '3 in store, 5 for order',
               colours: [
                 {
-                  name: 'grey',
+                  name: 'yellow',
                   hex: '#FCC943',
                   path: 'models/stuff/tops/shirt1.png',
                 }
@@ -143,6 +143,7 @@ $(function() {
     active: 'tops',
     controller: {},
     popup: false,
+    list: false,
     previous: '',
     current: ''
   };
@@ -227,6 +228,7 @@ $(function() {
       var type = $(this).attr('id').split('-')[0];
       var number = $(this).attr('id').split('-')[1];
       var clicked = state.model[type][number].object;
+      state.lastClicked = clicked;
       // Change the text in the template copy
       modal.find('p#thingName').text(clicked.name);
       modal.find('p#thingDescription').text(clicked.desc);
@@ -234,7 +236,7 @@ $(function() {
       state[type] = number;
       // Change the image in the mirror
       $('.mirror-frame img#model').attr('src',getImgString());
-      // Get the image of the thing clicked
+      // Get the image of the thing clicke
       modal.find('#thingImg').attr('src',$(this).find('.thing-card-img img').attr('src'));
       // Switch the template class
       modal.removeClass('popupTemplate');
@@ -275,7 +277,17 @@ $(function() {
   });
 
   $(document).on('click','.saveButton', function(){
+    // Remember there is at least 1 child on start, the arrow-icon
+    var listCount = $('#pickerList').children().length;
     removePopup(false);
+    var item = $('#pickedItemTemplate').clone();
+    item.attr('id','item-'+listCount);
+    item.find('img.picked-item-thumb').attr('src',imgBasePath+state.lastClicked.colours[0].path);
+    item.find('p.item-badge').text(state.lastClicked.price);
+    item.find('p.item-name').text(state.lastClicked.name);
+    $('#pickerList .items-list').append(item);
+    state.list = true;
+    sidebar(state.list);
   });
 
   $(document).on('click','.sidebar-item', function(){
@@ -288,6 +300,26 @@ $(function() {
       $(this).addClass('active');
       loadMainStuff();
     }
+  });
+
+  function sidebar(open) {
+    var sidebar = $('#pickerList');
+    var width = parseFloat(sidebar.width())-20;
+    var duration = 200;
+    if (open) {
+      sidebar.find('#pickerListButton').removeClass('fa-chevron-left');
+      sidebar.find('#pickerListButton').addClass('fa-chevron-right');
+      sidebar.animate({right: 0}, duration);
+    } else{
+      sidebar.find('#pickerListButton').removeClass('fa-chevron-right');
+      sidebar.find('#pickerListButton').addClass('fa-chevron-left');
+      sidebar.animate({right: -width}, duration);
+    }
+  }
+
+  $('#pickerList').click(function() {
+    state.list = !state.list;
+    sidebar(state.list);
   });
 
 });

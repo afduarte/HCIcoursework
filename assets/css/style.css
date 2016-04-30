@@ -58,6 +58,20 @@ body{
   box-shadow: 0 2px 10px 0 rgba(0,0,0,0.12);
 }
 
+.sidebar-right {
+  display: flex;
+  border-bottom-right-radius: 2rem;
+  width: 200px;
+  position: absolute;
+  height: 420px;
+  right: -180px;
+  z-index: 50;
+  margin-top: 60px;
+  float: right;
+  background-color: #fff;
+  box-shadow: 0 2px 10px 0 rgba(0,0,0,0.12);
+}
+
 .sidebar.clothes-picker{
   float: right;
   right: 0;
@@ -340,4 +354,44 @@ ul.nav li.active {
 
 img {
   transition: all 0.3;
+}
+
+#pickerListButton {
+  vertical-align: middle;
+}
+
+img.picked-item-thumb {
+  max-height: 70px;
+  width: auto;
+  margin: 0 auto;
+}
+
+#pickedItemTemplate {
+  display: none;
+}
+
+.items-list .picked-item{
+  clear: both;
+}
+
+.removeButton {
+  position: absolute;
+  color: #F00;
+  top: 5px;
+  right: 5px;
+}
+
+.thumb-container {
+  float: right;
+  position: relative;
+}
+
+.item-badge {
+  left: 5px;
+  top: 5px;
+}
+
+.items-list {
+  width: 70%;
+  float: right;
 }
