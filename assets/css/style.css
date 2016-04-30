@@ -372,6 +372,7 @@ img.picked-item-thumb {
 
 .items-list .picked-item{
   clear: both;
+  z-index: 9999;
 }
 
 .removeButton {
@@ -394,4 +395,11 @@ img.picked-item-thumb {
 .items-list {
   width: 70%;
   float: right;
+}
+
+.TOTAL {
+  position: absolute;
+  bottom: 0;
+  left: 15px;
+  width: 100%;
 }

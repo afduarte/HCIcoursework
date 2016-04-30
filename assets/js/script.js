@@ -145,7 +145,8 @@ $(function() {
     popup: false,
     list: false,
     previous: '',
-    current: ''
+    current: '',
+    total: 0
   };
 
   $('<img/>').attr('src', imgBasePath+state.bg.img).load(function() {
@@ -276,6 +277,22 @@ $(function() {
     removePopup(true);
   });
 
+  function updateTotal(){
+    var total = 0;
+    $('#pickerList .items-list>.picked-item p.item-badge').each(function(){
+      var thisPrice = $(this).text().replace('£','');
+      total += parseFloat(thisPrice);
+      console.log(thisPrice);
+    });
+    state.total = total;
+    $('.TOTAL-number').text('TOTAL: £'+state.total);
+  }
+
+  $(document).on('click', '.removeButton', function(){
+    $(this).parent().parent().remove();
+    updateTotal();
+  });
+
   $(document).on('click','.saveButton', function(){
     // Remember there is at least 1 child on start, the arrow-icon
     var listCount = $('#pickerList').children().length;
@@ -283,9 +300,11 @@ $(function() {
     var item = $('#pickedItemTemplate').clone();
     item.attr('id','item-'+listCount);
     item.find('img.picked-item-thumb').attr('src',imgBasePath+state.lastClicked.colours[0].path);
-    item.find('p.item-badge').text(state.lastClicked.price);
+    state.total += state.lastClicked.price;
+    item.find('p.item-badge').text('£'+state.lastClicked.price);
     item.find('p.item-name').text(state.lastClicked.name);
     $('#pickerList .items-list').append(item);
+    updateTotal();
     state.list = true;
     sidebar(state.list);
   });
