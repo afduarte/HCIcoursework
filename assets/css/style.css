@@ -97,7 +97,7 @@ body{
   opacity: 0;
 }
 
-#pickerModal.modal, #itemModal.modal {
+#pickerModal.modal, #itemModal.modal, #confirmation.modal {
   position: relative;
 }
 
@@ -467,4 +467,8 @@ img.picked-item-thumb {
   position: absolute;
   bottom: 10px;
   left: 10px;
+}
+
+.template {
+  display: none;
 }
