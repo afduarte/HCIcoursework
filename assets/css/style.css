@@ -196,7 +196,7 @@ body{
 
 .navigation .navbar-brand {
   height: auto;
-  padding: 0 15px;
+  padding: 5px 20px;
   text-align: center;
 }
 */
@@ -258,12 +258,15 @@ h2.navbar-brand {
 }
 
 h5.thing-card-title {
+  font-size: 0.95em;
   clear: both;  
   vertical-align: middle;
   padding: 5px;
   margin-top: 0;
   margin-bottom: 0;
   min-height: 1em;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .thing-card-img {

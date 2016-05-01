@@ -15,12 +15,15 @@ $(function() {
           {
             object:{
               name: 'Lemoncello Neck Top',
-              desc: 'Super-hip shirt',
+              desc: 'Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore ' +
+              'et dolore magna aliqua.',
               price: 20,
               availability: '3 in store, 5 for order',
+              suggestSize: '86% Small 14% Medium',
+              fabric: "100% cotton",
               colours: [
                 {
-                  name: 'yellow',
+                  name: 'grey',
                   hex: '#FCC943',
                   path: 'models/stuff/tops/shirt1.png',
                 }
@@ -30,9 +33,12 @@ $(function() {
           {
             object:{
               name: 'Slim Fit V Neck',
-              desc: 'Even-hipper Shirt',
+              desc: 'Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore ' +
+              'et dolore magna aliqua.',
               price: 25,
               availability: '5 in store, 3 for order',
+              suggestSize: '86% Small 14% Medium',
+              fabric: "100% cotton",
               colours: [
                 {
                   name: 'navy-blue',
@@ -55,9 +61,12 @@ $(function() {
           {
             object:{
               name: 'meh Shirt',
-              desc: 'Yeah, just another shirt',
+              desc: 'Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore ' +
+              'et dolore magna aliqua.',
               price: 10,
               availability: 'not in store, 3 for order',
+              suggestSize: '86% Small 14% Medium',
+              fabric: "100% cotton",
               colours: [
                 {
                   name: 'blue',
@@ -70,9 +79,12 @@ $(function() {
           {
             object:{
               name: 'dogeShirt',
-              desc: 'WoW Much Shirt So Awesome',
+              desc: 'Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore ' +
+              'et dolore magna aliqua.',
               price: 999,
               availability: '10 in store, 50 for order',
+              suggestSize: '86% Small 14% Medium',
+              fabric: "100% cotton",
               colours: [
                 {
                   name: 'white',
@@ -87,8 +99,12 @@ $(function() {
           {
             object:{
               name: 'Plain Trousers',
-              desc: 'Just your regular trousers',
+              desc: 'Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore ' +
+              'et dolore magna aliqua.',
               price: 50,
+              availability: '10 in store, 50 for order',
+              suggestSize: '86% Small 14% Medium',
+              fabric: "100% cotton",
               colours: [
                 {
                   name: 'grey',
@@ -101,8 +117,12 @@ $(function() {
           {
             object:{
               name: 'Plain Trousers 2',
-              desc: 'Just your regular trousers but cheaper',
+              desc: 'Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore ' +
+              'et dolore magna aliqua.',
               price: 35,
+              availability: '10 in store, 50 for order',
+              suggestSize: '86% Small 14% Medium',
+              fabric: "100% cotton",
               colours: [
                 {
                   name: 'grey',
@@ -217,6 +237,46 @@ $(function() {
   }
 
   // Handle item clicks
+  //  $(document).on('click','.thing-card', function(){
+  //    // If the popup is not showing
+  //    if(!state.popup){
+  //      state.previous = $('.mirror-frame img#model').attr('src');
+  //      // Clone the template
+  //      var modal = $('#itemModalTemplate.popupTemplate').clone();
+  //      // Change the id
+  //      modal.attr('id','#itemModal');
+  //      // Get info from the clicked element
+  //      var type = $(this).attr('id').split('-')[0];
+  //      var number = $(this).attr('id').split('-')[1];
+  //      var clicked = state.model[type][number].object;
+  //      state.lastClicked = clicked;
+  //      // Change the text in the template copy
+  //      modal.find('p#thingName').text(clicked.name);
+  //      modal.find('p#thingDescription').text(clicked.desc);
+  //      // Change the state
+  //      state[type] = number;
+  //      if(type === 'accessories'){
+  //        state.bag = true;
+  //      }
+  //      // Change the image in the mirror
+  //      $('.mirror-frame img#model').attr('src',getImgString());
+  //      // Get the image of the thing clicke
+  //      modal.find('#thingImg').attr('src',$(this).find('.thing-card-img img').attr('src'));
+  //      // Switch the template class
+  //      modal.removeClass('popupTemplate');
+  //      modal.addClass('popup');
+  //      // Place the modal in the placeholder
+  //      $('div.modal-placeholder').append(modal);
+  //      // Show it
+  //      modal.css('display','block');
+  //      // Record that the popup is showing
+  //      state.popup = true;
+  //      // Else if the popup is showing, remove it
+  //    }else{
+  //      removePopup(false);
+  //    }
+  //  });
+
   $(document).on('click','.thing-card', function(){
     // If the popup is not showing
     if(!state.popup){
@@ -231,13 +291,24 @@ $(function() {
       var clicked = state.model[type][number].object;
       state.lastClicked = clicked;
       // Change the text in the template copy
+      modal.find('span#thingPrice').text('£'+clicked.price+' Add to list');
+      modal.find('li#thingFabrics').text(clicked.fabric);
+      modal.find('li#thingSize').text(clicked.suggestSize);
+      for(var i=0; i<clicked.colours.length; i++){
+        modal.find('div.thing-card-colours').append('<div style="background-color:'+clicked.colours[i].hex+';" class="colour"></div>');
+      }
+      modal.find('li#thingAvailability').text(clicked.availability);
       modal.find('p#thingName').text(clicked.name);
       modal.find('p#thingDescription').text(clicked.desc);
       // Change the state
       state[type] = number;
+
+      if(type === 'accessories'){
+        state.bag = true;
+      }
       // Change the image in the mirror
       $('.mirror-frame img#model').attr('src',getImgString());
-      // Get the image of the thing clicke
+      // Get the image of the thing clicked
       modal.find('#thingImg').attr('src',$(this).find('.thing-card-img img').attr('src'));
       // Switch the template class
       modal.removeClass('popupTemplate');
@@ -274,6 +345,10 @@ $(function() {
   }
 
   $(document).on('click','.closeButton', function(){
+    var previousItem = state.previous.split('/').splice(-3);
+    state.tops = parseInt(previousItem[0].replace(/\D/g,''));
+    state.bottoms = parseInt(previousItem[1].replace(/\D/g,''));
+    state.bag = (previousItem[2].indexOf('no-bag')>0)?true:false;
     removePopup(true);
   });
 
@@ -282,15 +357,15 @@ $(function() {
     $('#pickerList .items-list>.picked-item p.item-badge').each(function(){
       var thisPrice = $(this).text().replace('£','');
       total += parseFloat(thisPrice);
-      console.log(thisPrice);
     });
     state.total = total;
     $('.TOTAL-number').text('TOTAL: £'+state.total);
   }
 
-  $(document).on('click', '.removeButton', function(){
+  $(document).on('click', '.removeButton', function(e){
     $(this).parent().parent().remove();
     updateTotal();
+    e.preventDefault();
   });
 
   $(document).on('click','.saveButton', function(){
@@ -310,7 +385,6 @@ $(function() {
   });
 
   $(document).on('click','.sidebar-item', function(){
-    console.log($(this).data('id'));
     if(state.active != $(this).data('id')){
       $('.controller-tablet .thing-card').remove();
       $('.controller-tablet .padder.col-md-2').remove();
@@ -336,9 +410,12 @@ $(function() {
     }
   }
 
-  $('#pickerList').click(function() {
-    state.list = !state.list;
-    sidebar(state.list);
+  $('#pickerList').on('click', function() {
+    console.log($(this).attr('class')+' : '+$('.removeButton').attr('class'))
+    if($(this) != $('.removeButton')){
+      state.list = !state.list;
+      sidebar(state.list);
+    }
   });
 
 });
