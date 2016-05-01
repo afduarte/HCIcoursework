@@ -19,8 +19,19 @@
   content: "";
   border-radius: 2rem;
   background: linear-gradient(rgba(0, 0, 0, 0.7),rgba(0, 0, 0, 0.7)),
-    url("../../assets/img/viselements/bg/backgroundOut.jpg") no-repeat center center;
+    url("../../assets/img/viselements/bg/backgroundIntro.png") no-repeat center center;
   background-size: cover;
+  min-height: 64vh;
+}
+
+a:active, a:focus, a:visited{
+  color: #fff;
+  text-decoration: none;
+}
+
+a:hover{
+  color: #FF94A4;
+  text-decoration: none;
 }
 
 img
@@ -44,7 +55,7 @@ img
 
 .action-button
 {
-/*  position: relative;*/
+  position: relative;
   padding: 5px;
   margin: 0 0.7rem;
   float: left;
@@ -52,7 +63,7 @@ img
   font-family: 'ametist', cursive;
   text-align: center;
   font-size: 2.5rem;
-  color: white;
+  color: #fff;
   text-decoration: none;
   line-height: 3rem;
 }
@@ -86,8 +97,11 @@ img
 
 .buttons
 {
-  margin: auto;
+  float: none;
+  margin-left: auto;
+  margin-right: auto;
   vertical-align: middle;
+  margin-top: 7%;
 }
 
 .mini
@@ -110,7 +124,7 @@ img
 
 .start
 {
-  animation: shineText 2s linear 2s infinite alternate;
+/*  animation: shineText 2s linear 2s infinite alternate;*/
 }
 
 .shine
@@ -118,5 +132,5 @@ img
   animation: shineBox 2s linear 2s infinite alternate;
 }
 .logo-row {
-  padding-bottom: 15%;
+/*  padding-bottom: 15%;*/
 }

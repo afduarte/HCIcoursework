@@ -1,6 +1,6 @@
 .sidebar-item.active, .active {
     background: linear-gradient(to right, #b24656 0%, white 85%);
-    color: #fff;
+    color: #333;
     font-weight: bold;
 }
 
@@ -95,11 +95,11 @@
     margin-left: 45px;
 }
 
-.save-button-item {
+.save-button-item , .checkout-button{
     background-color: #b24656;
     color: white;
 }
 
-.save-button-icon {
+.save-button-icon, .checkout-button-icon {
     font-size: 30px;
 }

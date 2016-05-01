@@ -18,44 +18,24 @@
   100% {box-shadow: 2px 5px 50px 0px rgba(250,250,250,1)}
 }
 
-/*
-html{
-  height: 100%;
-}
-body {
-  text-align: center;
-  position: relative;
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-  min-height: 100%;
-}
-*/
-/*body::after {*/
 .controller-tablet{
-  margin-top: 70px;
+  border: 10px solid #000;
+  margin-top: 30px;
   content: "";
-  background: url("../../assets/img/viselements/bg/backgroundOut.jpg") no-repeat center center;
+  border-radius: 2rem;
+  background: linear-gradient(rgba(0, 0, 0, 0.7),rgba(0, 0, 0, 0.7)),
+    url("../../assets/img/viselements/bg/backgroundOut.jpg") no-repeat center center;
   background-size: cover;
-  -webkit-filter: brightness(20%); /* Old WebKit */
-  filter: brightness(20%);
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-/*  position: absolute;*/
-
+  min-height: 60vh;
 }
 
 .receipt
 {
-  height: 550px;
-  width: 550px;
+  margin-top: -50px;
   background-color: transparent;
   border: 5px solid white;
   border-radius: 100%;
   margin: auto;
-  position: absolute;
-  top: 50px; left: 0; bottom: 0; right: 0;
 }
 
 .centre-text
@@ -64,12 +44,21 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 70px;
+}
+
+.thanks.centre-text{
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
 }
 
 .logo
 {
-  width: 750px;
-  height: 300px;
+  width: auto;
+  max-height: 300px;
   margin: auto;
 }
 
@@ -78,26 +67,26 @@ body {
 {
 
   line-height: normal;
-  color: white;
+  color: #fff;
   font-family: 'ametist', cursive;
-  font-size: 60px;
+  font-size: 3.5rem;
 }
 
 .thanks
 {
-  height: 250px;
-  width: 500px;
+/*  height: 250px;*/
+/*  width: 500px;*/
   margin: auto;
-  position: absolute;
-  top: 850px; left: 0; bottom: 0; right: 0;
+/*  position: absolute;*/
+/*  top: 850px; left: 0; bottom: 0; right: 0;*/
 }
 
 .thanks .thanks-span
 {
   line-height: normal;
-  color: white;
+  color: #fff;
   font-family: 'alpha54', cursive;
-  font-size: 85px;
+  font-size: 6rem;
   font-weight: lighter;
   font-style: italic;
   text-decoration: underline;
@@ -107,4 +96,7 @@ body {
 .receipt
 {
   animation: shineBox 2s linear 2s infinite alternate, shineText 2s linear 2s infinite alternate;
+}
+.logo-row {
+  max-height: 25%;
 }
