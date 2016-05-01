@@ -298,6 +298,22 @@ $(function() {
     }
   });
 
+  // Handle item clicks
+  $(document).on('click','.checkout-button', function(){
+    console.log('clicked checkout');
+    var modal = $('#confirmation').clone();
+    // Change the id
+
+    // Switch the template class
+    modal.removeClass('template');
+    modal.addClass('popup');
+    modal.find('.checkout-TOTAL .TOTAL-number').text('TOTAL: £'+state.total);
+    // Place the modal in the placeholder
+    $('div.modal-placeholder').append(modal);
+    // Show it
+    modal.css('display','block');
+  });
+
   $(document).mouseup(function (e){
     if(state.popup){
       var container = $('.popup');
@@ -318,10 +334,13 @@ $(function() {
   }
 
   $(document).on('click','.closeButton', function(){
-    var previousItem = state.previous.split('/').splice(-3);
-    state.tops = parseInt(previousItem[0].replace(/\D/g,''));
-    state.bottoms = parseInt(previousItem[1].replace(/\D/g,''));
-    state.bag = (previousItem[2].indexOf('no-bag')>0)?true:false;
+    console.log($(this).attr('class'));
+    if($(this).attr('class').indexOf('checkout-no')<0){
+      var previousItem = state.previous.split('/').splice(-3);
+      state.tops = parseInt(previousItem[0].replace(/\D/g,''));
+      state.bottoms = parseInt(previousItem[1].replace(/\D/g,''));
+      state.bag = (previousItem[2].indexOf('no-bag')>0)?true:false;
+    }
     removePopup(true);
   });
 
