@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="assets/css/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/font-awesome/css/font-awesome.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/theme.css">
+    <script src="assets/js/jquery/jquery.min.js"></script>
+    <script src="assets/js/bootstrap/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <div class="container main-container">
+      <div class="row mirror">
+        <div class="col-md-3">
+          <div class="mirror-frame">
+            <img id="model"/>
+          </div>
+        </div>
+      </div>
+      <div class="controller-tablet col-md-7">
+        <div class="navigation navbar navbar-default">
+          <div class="row">
+            <div class="col-md-2">
+              <div class="navbar-left navbar-brand">
+                <img class="logo img-responsive" src="assets/img/viselements/logo/logo-2.png">
+              </div>
+            </div>
+            <div class="col-md-10">
+              <ul class="center nav navbar-nav">
+                <li class="active"><a href="#">All</a></li>
+                <li class="underslide"><a href="#">Men</a></li>
+                <li class="underslide"><a href="#">Women</a></li>
+                <li class="underslide"><a href="#">Kids</a></li>
+                <li class="underslide"><a href="#">Sale</a></li>
+                <li class="underslide"><a href="#">Latest</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="modal-placeholder"></div>
+        <div id="pickerList" class="sidebar-right">
+          <div class="sidebar-right-button">
+            <i id="pickerListButton" class="fa fa-chevron-left"></i>
+          </div>
+          <div class="items-list"></div>
+          <div class="TOTAL"><h4 class="TOTAL-number"></h4></div>
+        </div>
+        <div class="col-md-2 sidebar">
+          <ul class="sidebar-list nav nav-stacked">
+            <li class="sidebar-item active" data-id="tops">TOPS</li>
+            <li class="sidebar-item" data-id="bottoms">BOTTOMS</li>
+            <li class="sidebar-item" data-id="shoes">SHOES</li>
+            <li class="sidebar-item" data-id="accessories">ACCESSORIES</li>
+          </ul>
+          <a href="outro.html" type="button" class="btn checkout-button">
+            <i class="fa fa-arrow-right checkout-button-icon"></i>
+            <br/>
+            <span class="checkout-button-text">Checkout</span>
+          </a>
+        </div>
+      </div>
+    </div>      
+
+    <!--MODALS-->
+    <div class="modal fade" id="pickerModal" tabindex="-1" role="dialog" aria-labelledby="clothesPickerLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="clothesPickerLabel">Modal title</h4>
+          </div>
+          <div class="modal-body">
+            <div class="row"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--Popup Template-->
+    <div class="popupTemplate" id="itemModalTemplate">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header popup-header">
+            <i class="closeButton fa fa-times fa-2x"></i><i class="fa fa-question fa-2x"></i>
+          </div>
+          <div class="modal-body popup-modal">
+            <div class="row">
+              <div class="col-md-6 item-image">
+                <img class="img-responsive" id="thingImg">
+                <p class="descTitle">Item description: </p>
+                <p id="thingDescription"></p>
+              </div>
+              <div class="col-md-6 item-description">
+                <div class="col-md-6 item-specifics">
+                  <p id="thingName" class="itemTitle"></p>
+                  <ul>
+                    <li id="thingFabrics"></li>
+                    <li id="thingSize"></li>
+                    <li id="thingAvailability"></li>
+                    <li class="colorsTag">Colours Available: </li>
+                  </ul>
+                  <div class="thing-card-colours"></div>
+                </div>
+                <div class="col-md-6 item-story">
+                  <div class="save-button">
+                    <button type="button" class="saveButton btn save-button save-button-item">
+                      <i class="fa fa-arrow-right save-button-icon"></i><br/>
+                      <span id="thingPrice" class="save-button-text"></span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!--Thing template-->
+    <div id="thingTemplate" class="thing col-sm-3">
+      <img class="thing-thumb"/>
+      <span class="badge"></span>
+      <div class="caption">
+        <p class="thingName"></p>
+        <div class="thingColours">
+        </div>
+      </div>
+    </div>
+
+    <!-- Thing Card Template -->
+    <div id="thingCardTemplate" class="thing-card col-md-3">
+      <div class="thing-card-img">
+        <img>
+      </div>
+      <div class="thing-card-colours card-color-top"></div>
+      <h5 class="thing-card-title"></h5>
+      <p class="badge"></p>
+    </div>
+
+    <!--Status Item template-->
+    <div id ="pickedItemTemplate" class="picked-item">
+      <div class="thumb-container">
+        <img class="img-responsive picked-item-thumb"/>
+        <i class="fa fa-times fa-2x removeButton"></i>
+        <p class="item-badge badge"></p>
+      </div>
+      <p class="item-name"></p>
+    </div>
+    <script src="assets/js/script.js"></script>
+  </body>
+</html>

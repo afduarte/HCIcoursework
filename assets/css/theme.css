@@ -1,0 +1,105 @@
+.sidebar-item.active, .active {
+    background: linear-gradient(to right, #b24656 0%, white 85%);
+    color: #333;
+    font-weight: bold;
+}
+
+.sidebar-item:hover {
+    background: linear-gradient(to right, #e4b4c0 0%, white 85%);
+    color:#333;
+}
+
+.sidebar-item {
+    line-height: 150%;
+    font-size: 110%;
+}
+
+.navbar-nav {
+    font-size: 125%;
+}
+
+.nav-list
+{
+    left: 100px;
+}
+
+.logo{
+  min-width: 100px;
+}
+
+.sidebar {
+    color: #a9a2aa;
+    font-weight: bold;
+}
+
+.navigation {
+    font-size: 18px;
+}
+
+.thing-card{
+    line-height: 125%;
+}
+
+.thing-card p.badge{
+    background-color: #b24656;
+    opacity: 0.5;
+    filter: opacity(50%);
+    position: relative;
+    top: 0px;
+    left: 0px;
+}
+
+.thing-card-title {
+    font-size: 18px;
+    line-height: 160%;
+}
+
+.card-color-top
+{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    margin-bottom: 20px;
+}
+
+.navigation .navbar-nav>li.active>a {
+    position: relative;
+    color: #000;
+    border-bottom: 3px solid #b24656;
+    background-color: white;
+}
+
+.thing-card:hover {
+    box-shadow: 0 2px 4px 0 #b24656,0 2px 10px 0 #b24656 !important;
+    color: black;
+}
+
+.underslide{
+    color: #b24656;
+}
+
+.underslide:hover{
+    color: #b24656;
+}
+
+.underslide:before {
+    background-color: #b24656;
+}
+
+.save-button {
+    height: 60px;
+    width: 120px;
+    position: relative;
+    margin-top: 25px;
+    margin-bottom: 40px;
+    margin-left: 45px;
+}
+
+.save-button-item , .checkout-button{
+    background-color: #b24656;
+    color: white;
+}
+
+.save-button-icon, .checkout-button-icon {
+    font-size: 30px;
+}
