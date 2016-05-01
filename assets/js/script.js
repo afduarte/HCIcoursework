@@ -15,8 +15,7 @@ $(function() {
           {
             object:{
               name: 'Lemoncello Neck Top',
-              desc: 'Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore ' +
-              'et dolore magna aliqua.',
+              desc: 'Cat ipsum dolor sit amet, dream about hunting birds, so toy mouse squeak roll over tuxedo cats always looking dapper stare out the window.',
               price: 20,
               availability: '3 in store, 5 for order',
               suggestSize: '86% Small 14% Medium',
@@ -33,8 +32,7 @@ $(function() {
           {
             object:{
               name: 'Slim Fit V Neck',
-              desc: 'Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore ' +
-              'et dolore magna aliqua.',
+              desc: 'Spot something, big eyes, big eyes, crouch, shake butt, prepare to pounce.',
               price: 25,
               availability: '5 in store, 3 for order',
               suggestSize: '86% Small 14% Medium',
@@ -61,8 +59,7 @@ $(function() {
           {
             object:{
               name: 'meh Shirt',
-              desc: 'Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore ' +
-              'et dolore magna aliqua.',
+              desc: "Paw at beetle and eat it before it gets away shove bum in owner's face like camera lens yet leave hair everywhere",
               price: 10,
               availability: 'not in store, 3 for order',
               suggestSize: '86% Small 14% Medium',
@@ -99,8 +96,7 @@ $(function() {
           {
             object:{
               name: 'Plain Trousers',
-              desc: 'Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore ' +
-              'et dolore magna aliqua.',
+              desc: 'Stare at wall turn and meow stare at wall some more meow again continue staring scratch leg; meow for can opener to feed me or intently sniff hand leave fur on owners clothes stare out the window.',
               price: 50,
               availability: '10 in store, 50 for order',
               suggestSize: '86% Small 14% Medium',
@@ -117,8 +113,7 @@ $(function() {
           {
             object:{
               name: 'Plain Trousers 2',
-              desc: 'Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore ' +
-              'et dolore magna aliqua.',
+              desc: 'Cat ipsum dolor sit amet, see owner, run in terror. Favor packaging over toy spit up on light gray carpet instead of adjacent linoleum.',
               price: 35,
               availability: '10 in store, 50 for order',
               suggestSize: '86% Small 14% Medium',
@@ -237,46 +232,6 @@ $(function() {
   }
 
   // Handle item clicks
-  //  $(document).on('click','.thing-card', function(){
-  //    // If the popup is not showing
-  //    if(!state.popup){
-  //      state.previous = $('.mirror-frame img#model').attr('src');
-  //      // Clone the template
-  //      var modal = $('#itemModalTemplate.popupTemplate').clone();
-  //      // Change the id
-  //      modal.attr('id','#itemModal');
-  //      // Get info from the clicked element
-  //      var type = $(this).attr('id').split('-')[0];
-  //      var number = $(this).attr('id').split('-')[1];
-  //      var clicked = state.model[type][number].object;
-  //      state.lastClicked = clicked;
-  //      // Change the text in the template copy
-  //      modal.find('p#thingName').text(clicked.name);
-  //      modal.find('p#thingDescription').text(clicked.desc);
-  //      // Change the state
-  //      state[type] = number;
-  //      if(type === 'accessories'){
-  //        state.bag = true;
-  //      }
-  //      // Change the image in the mirror
-  //      $('.mirror-frame img#model').attr('src',getImgString());
-  //      // Get the image of the thing clicke
-  //      modal.find('#thingImg').attr('src',$(this).find('.thing-card-img img').attr('src'));
-  //      // Switch the template class
-  //      modal.removeClass('popupTemplate');
-  //      modal.addClass('popup');
-  //      // Place the modal in the placeholder
-  //      $('div.modal-placeholder').append(modal);
-  //      // Show it
-  //      modal.css('display','block');
-  //      // Record that the popup is showing
-  //      state.popup = true;
-  //      // Else if the popup is showing, remove it
-  //    }else{
-  //      removePopup(false);
-  //    }
-  //  });
-
   $(document).on('click','.thing-card', function(){
     // If the popup is not showing
     if(!state.popup){

@@ -73,32 +73,7 @@
       </div>
     </div>
 
-
-    <!-- Popup Template Antero
-<div class="popupTemplate" id="itemModalTemplate">
-<div class="modal-dialog" role="document">
-<div class="modal-content">
-<div class="modal-header">
-<i class="closeButton fa fa-times fa-2x"></i><i class="saveButton fa fa-floppy-o fa-2x"></i><i class="fa fa-question fa-2x"></i>
-</div>
-<div class="modal-body">
-<div class="row">
-<div class="row">
-<div class="col-md-6">
-<img class="img-responsive" id="thingImg">
-</div>
-<div class="col-md-6">
-<p id="thingName"></p>
-<p id="thingDescription"></p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
--->
-
+    <!--Popup Template-->
     <div class="popupTemplate" id="itemModalTemplate">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -109,6 +84,8 @@
             <div class="row">
               <div class="col-md-6 item-image">
                 <img class="img-responsive" id="thingImg">
+                <p class="descTitle">Item description: </p>
+                <p id="thingDescription"></p>
               </div>
               <div class="col-md-6 item-description">
                 <div class="col-md-6 item-specifics">
@@ -117,17 +94,14 @@
                     <li id="thingFabrics"></li>
                     <li id="thingSize"></li>
                     <li id="thingAvailability"></li>
-                    <li class="colorsTag">Colours Availability: </li>
+                    <li class="colorsTag">Colours Available: </li>
                   </ul>
                   <div class="thing-card-colours"></div>
                 </div>
                 <div class="col-md-6 item-story">
-                  <p class="descTitle">Item description: </p>
-                  <p id="thingDescription"></p>
                   <div class="save-button">
                     <button type="button" class="saveButton btn save-button save-button-item">
                       <i class="fa fa-arrow-right save-button-icon" aria-hidden="true"></i>
-                      <br>
                       <span id="thingPrice" class="save-button-text"></span>
                     </button>
                   </div>
