@@ -128,7 +128,25 @@ $(function() {
             }
           }
         ],
-        shoes: ['shoes will go here']
+        accessories: [
+          {
+            object:{
+              name: 'Black Handbag',
+              desc: "Cat ipsum dolor sit amet, see owner, run in terror. It's one of those fancy bags, that's why it costs so much!!!",
+              price: 500,
+              availability: '1 in store, 2 for order',
+              suggestSize: 'Single size',
+              fabric: "100% leather",
+              colours: [
+                {
+                  name: 'black',
+                  hex: '#000',
+                  path: 'models/stuff/accessories/bag1.png',
+                }
+              ]
+            }
+          }
+        ]
 
       },
       {
