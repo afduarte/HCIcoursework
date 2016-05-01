@@ -334,14 +334,15 @@ $(function() {
   }
 
   $(document).on('click','.closeButton', function(){
-    console.log($(this).attr('class'));
-    if($(this).attr('class').indexOf('checkout-no')<0){
-      var previousItem = state.previous.split('/').splice(-3);
-      state.tops = parseInt(previousItem[0].replace(/\D/g,''));
-      state.bottoms = parseInt(previousItem[1].replace(/\D/g,''));
-      state.bag = (previousItem[2].indexOf('no-bag')>0)?true:false;
-    }
+    var previousItem = state.previous.split('/').splice(-3);
+    state.tops = parseInt(previousItem[0].replace(/\D/g,''));
+    state.bottoms = parseInt(previousItem[1].replace(/\D/g,''));
+    state.bag = (previousItem[2].indexOf('no-bag')>0)?true:false;
     removePopup(true);
+  });
+
+  $(document).on('click','.checkoutCloseButton', function(){
+    removePopup(false);
   });
 
   function updateTotal(){
