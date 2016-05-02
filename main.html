@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <script type="text/javascript">
+      var vpw = (screen.width>=1025)?'device-width':'1024';
+      document.write('<meta name="viewport" content="width='+vpw+'" >');
+    </script>
     <meta charset="utf-8">
     <link rel="stylesheet" href="assets/css/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/font-awesome/css/font-awesome.min.css">
@@ -46,6 +50,11 @@
           </div>
           <div class="items-list"></div>
           <div class="TOTAL"><h4 class="TOTAL-number"></h4></div>
+          <button type="button" class="btn checkout-button" data-toggle="modal" data-target="#pickerModal">
+            <i class="fa fa-arrow-right checkout-button-icon"></i>
+            <br/>
+            <span class="checkout-button-text">Checkout</span>
+          </button>
         </div>
         <div class="col-md-2 sidebar">
           <ul class="sidebar-list nav nav-stacked">
@@ -54,11 +63,6 @@
             <li class="sidebar-item" data-id="shoes">SHOES</li>
             <li class="sidebar-item" data-id="accessories">ACCESSORIES</li>
           </ul>
-          <button type="button" class="btn checkout-button" data-toggle="modal" data-target="#pickerModal">
-            <i class="fa fa-arrow-right checkout-button-icon"></i>
-            <br/>
-            <span class="checkout-button-text">Checkout</span>
-          </button>
         </div>
       </div>
     </div>      

@@ -168,18 +168,34 @@ $(function() {
     bg: {
       img:stuffAvailable.bg[3]
     },
-    tops: 0,
-    bottoms: 0,
-    bag: false,
+    mirror: {
+      model: 'antonella',
+      tops: 0,
+      bottoms: 0,
+      bag: false
+    },
     jacket: false,
     model: stuffAvailable.models[0],
     active: 'tops',
     controller: {},
     popup: false,
     list: false,
-    previous: '',
+    previous: undefined,
     current: '',
-    total: 0
+    total: 0,
+    lastClicked:{},
+    items:[
+      {
+        number: 0,
+        type: 'tops',
+        object: stuffAvailable.models[0]['tops'][0].object
+      },
+      {
+        number: 0,
+        type: 'bottoms',
+        object: stuffAvailable.models[0]['bottoms'][0].object
+      }
+    ]
   };
 
   $('<img/>').attr('src', imgBasePath+state.bg.img).load(function() {
@@ -188,6 +204,9 @@ $(function() {
     init();
     loadMainStuff();
   });
+
+
+  state.previous = JSON.parse(JSON.stringify(state.mirror));
 
   // Cleanup on modal close to prevent items appearing multiple times.
   $('#itemModal').on('hidden.bs.modal', function () {
@@ -199,24 +218,28 @@ $(function() {
     init();
   });
 
-  function resetMirror(){
-    $('.mirror-frame img#model').attr('src',state.previous);
+  function updateMirror(){
+    for(var p =0; p<state.items.length;p++){
+      var product = state.items[p];
+      state.mirror[product.type] = product.number;
+    }
+    $('.mirror-frame img#model').attr('src',getImgString(state.mirror));
   }
 
-  function getImgString(){
-    return imgBasePath+'models/'+state.model.id+'/tops'+state.tops+'/bottoms'+state.bottoms+'/'+(state.jacket?'jacket':'')+(state.bag?'bag':'no-bag')+'.png';
+  function getImgString(object){
+    return imgBasePath+'models/'+object.model+'/tops'+object.tops+'/bottoms'+object.bottoms+'/'+(object.bag?'bag':'no-bag')+'.png';
   }
 
   function init(){
-    console.log('Running init');
+
     // Store the height of the bg img, cause we'll use it later
     state.bg.height = parseFloat($('.mirror-frame').css('height'));
-    $('.mirror-frame img#model').attr('src',getImgString());
+    $('.mirror-frame img#model').attr('src',getImgString(state.mirror));
     state.model.height = parseFloat($('.mirror-frame img#model').css('height'));
     state.controller.width = parseFloat($('.controller-tablet').css('width'));
     state.controller.width-=20;
     $('.navigation').css('width',state.controller.width);
-
+    updateMirror();
   }
 
   function loadMainStuff(){
@@ -253,16 +276,19 @@ $(function() {
   $(document).on('click','.thing-card', function(){
     // If the popup is not showing
     if(!state.popup){
-      state.previous = $('.mirror-frame img#model').attr('src');
+
+      state.previous = JSON.parse(JSON.stringify(state.mirror));
       // Clone the template
       var modal = $('#itemModalTemplate.popupTemplate').clone();
       // Change the id
       modal.attr('id','#itemModal');
       // Get info from the clicked element
       var type = $(this).attr('id').split('-')[0];
-      var number = $(this).attr('id').split('-')[1];
+      var number = parseInt($(this).attr('id').split('-')[1]);
       var clicked = state.model[type][number].object;
-      state.lastClicked = clicked;
+      state.lastClicked.type = type;
+      state.lastClicked.number = number;
+      state.lastClicked.object = clicked;
       // Change the text in the template copy
       modal.find('span#thingPrice').text('£'+clicked.price+' Add to list');
       modal.find('li#thingFabrics').text(clicked.fabric);
@@ -274,13 +300,13 @@ $(function() {
       modal.find('p#thingName').text(clicked.name);
       modal.find('p#thingDescription').text(clicked.desc);
       // Change the state
-      state[type] = number;
-
       if(type === 'accessories'){
-        state.bag = true;
+        state.mirror.bag = true;
+      }else{
+        state.mirror[type] = number;
       }
       // Change the image in the mirror
-      $('.mirror-frame img#model').attr('src',getImgString());
+      $('.mirror-frame img#model').attr('src',getImgString(state.mirror));
       // Get the image of the thing clicked
       modal.find('#thingImg').attr('src',$(this).find('.thing-card-img img').attr('src'));
       // Switch the template class
@@ -294,16 +320,13 @@ $(function() {
       state.popup = true;
       // Else if the popup is showing, remove it
     }else{
-      removePopup(false);
+      removePopup();
     }
   });
 
   // Handle item clicks
   $(document).on('click','.checkout-button', function(){
-    console.log('clicked checkout');
     var modal = $('#confirmation').clone();
-    // Change the id
-
     // Switch the template class
     modal.removeClass('template');
     modal.addClass('popup');
@@ -318,61 +341,52 @@ $(function() {
     if(state.popup){
       var container = $('.popup');
       if (!container.is(e.target) && container.has(e.target).length === 0){
-        removePopup(false);
+        removePopup();
       }
     }
   });
 
-  function removePopup(reset){
+  function removePopup(){
     $('.popup').remove();
     state.popup = false;
-    if(reset){
-      resetMirror();
-    }else{
-      $('.mirror-frame img#model').attr('src',getImgString());
-    }
+    updateMirror();
+
+
   }
 
   $(document).on('click','.closeButton', function(){
-    var previousItem = state.previous.split('/').splice(-3);
-    state.tops = parseInt(previousItem[0].replace(/\D/g,''));
-    state.bottoms = parseInt(previousItem[1].replace(/\D/g,''));
-    state.bag = (previousItem[2].indexOf('no-bag')>0)?true:false;
-    removePopup(true);
+    state.mirror = JSON.parse(JSON.stringify(state.previous));
+    removePopup();
   });
 
   $(document).on('click','.checkoutCloseButton', function(){
-    removePopup(false);
+    removePopup();
   });
 
   function updateTotal(){
     var total = 0;
-    $('#pickerList .items-list>.picked-item p.item-badge').each(function(){
-      var thisPrice = $(this).text().replace('£','');
-      total += parseFloat(thisPrice);
-    });
+    for(var p=2;p<state.items.length;p++){
+      total += state.items[p].object.price;
+    }
     state.total = total;
     $('.TOTAL-number').text('TOTAL: £'+state.total);
   }
 
   $(document).on('click', '.removeButton', function(e){
-    $(this).parent().parent().remove();
-    updateTotal();
-    e.preventDefault();
+    var id = $(this).parent().parent().attr('id');
+    if(id.split('-')[2] === 'accessories'){
+      state.mirror.bag = false;
+    }
+    var number = parseInt(id.split('-')[1]);
+    state.items.splice(number,1);
+    renderItemList();
   });
 
   $(document).on('click','.saveButton', function(){
     // Remember there is at least 1 child on start, the arrow-icon
-    var listCount = $('#pickerList').children().length;
-    removePopup(false);
-    var item = $('#pickedItemTemplate').clone();
-    item.attr('id','item-'+listCount);
-    item.find('img.picked-item-thumb').attr('src',imgBasePath+state.lastClicked.colours[0].path);
-    state.total += state.lastClicked.price;
-    item.find('p.item-badge').text('£'+state.lastClicked.price);
-    item.find('p.item-name').text(state.lastClicked.name);
-    $('#pickerList .items-list').append(item);
-    updateTotal();
+    removePopup();
+    state.items.push(JSON.parse(JSON.stringify(state.lastClicked)));
+    renderItemList();
     state.list = true;
     sidebar(state.list);
   });
@@ -387,6 +401,25 @@ $(function() {
       loadMainStuff();
     }
   });
+
+  function renderItemList(){
+    // cleanup list
+    $('#pickerList .items-list').find('.picked-item').remove();
+    // for every item in the array of items, put it in the list
+    for(var p =2; p<state.items.length;p++){
+      var product = state.items[p].object;
+      var type = state.items[p].type;
+      var item = $('#pickedItemTemplate').clone();
+      item.attr('id','item-'+p+'-'+type);
+      item.find('img.picked-item-thumb').attr('src',imgBasePath+product.colours[0].path);
+      state.total += product.price;
+      item.find('p.item-badge').text('£'+product.price);
+      item.find('p.item-name').text(product.name);
+      $('#pickerList .items-list').append(item);
+    }
+    updateTotal();
+    updateMirror();
+  }
 
   function sidebar(open) {
     var sidebar = $('#pickerList');
@@ -404,7 +437,6 @@ $(function() {
   }
 
   $('#pickerList').on('click', function() {
-    console.log($(this).attr('class')+' : '+$('.removeButton').attr('class'))
     if($(this) != $('.removeButton')){
       state.list = !state.list;
       sidebar(state.list);
