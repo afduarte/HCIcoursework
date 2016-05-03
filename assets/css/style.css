@@ -454,19 +454,20 @@ img.picked-item-thumb {
 .items-list {
   width: 70%;
   float: right;
+  margin-left: 15px;
 }
 
 .TOTAL {
   position: absolute;
   bottom: 0;
-  left: 15px;
+  left: 20px;
   width: 100%;
 }
 
 .btn.checkout-button {
   position: absolute;
-  bottom: 10px;
-  right: 5px;
+  bottom: 35px;
+  left: 20px;
 }
 
 .template {
